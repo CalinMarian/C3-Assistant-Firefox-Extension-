@@ -1,0 +1,70 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+  }
+#template{
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  position: relative;
+  justify-items: center
+}
+#title{
+  border: 1px gray solid;
+  border-radius: 0.5rem;
+  padding: 10px;
+  background-color: rgb(234, 234, 171);
+}
+textarea{
+    width: 400px;
+    height: 200px;
+    border-radius: 0.5rem;
+    padding: 6px;
+    background-color: rgb(235, 235, 232);
+}
+#msg, #copy {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+#normalMSG , #woMSG {
+  border: 2px gray solid;
+  width: 100px;
+  border-radius: 0.5rem;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: rgb(207, 225, 207);
+}
+
+#normalMSG:hover, #woMSG:hover {
+  background-color: rgb(134, 148, 134);
+}
+
+#copy {
+  border: 2px gray solid;
+  width: 400px;
+  border-radius: 0.5rem;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: rgb(90, 117, 90);
+  color: white;
+}
+#copy:hover {
+  background-color: rgb(47, 63, 47);
+}
+#attribution{
+    font-size: 10px;
+}
+
+/* Options page */
+
+#options-body {
+  background-color: rgb(235, 235, 232);
+  height: 300px;
+}
+#signatureOption, #label {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
