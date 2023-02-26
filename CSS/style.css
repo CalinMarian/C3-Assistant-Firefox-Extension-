@@ -9,10 +9,14 @@ body {
   position: relative;
   justify-items: center
 }
+#navBar{
+  display: flex;
+}
 #title{
   border: 1px gray solid;
   border-radius: 0.5rem;
   padding: 10px;
+  margin-top: 40px;
   background-color: rgb(234, 234, 171);
 }
 textarea{
@@ -58,6 +62,30 @@ textarea{
     font-size: 10px;
 }
 
+/*Get temperature */
+#temperature{
+  position: absolute;
+  display: flex;
+  margin-left: -150px;
+  width: 400px;
+}
+#getTemp{
+  border: 2px gray solid;
+  padding: 11px;
+  font-size: 0.8rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+#adressInfo {
+  font-size: 0.8rem;
+  width: 55%;
+}
+#displayTemp {
+  font-size: 0.8rem;
+  font-style: bold;
+  width: 22%;
+}
+
 /* Options page */
 
 #options-body {
@@ -68,3 +96,4 @@ textarea{
   margin-left: 1rem;
   margin-right: 1rem;
 }
+

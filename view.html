@@ -5,10 +5,17 @@
     <link rel="stylesheet" href="/CSS/style.css"/>
   </head>
   <body>
-    <div id="popup">
       <div id="template">
+        <div id="navBar">
+          <div id="temperature">
+            <p id="adressInfo"></p>
+            <p id="displayTemp"></p>
+            <buttn id="getTemp">Get-Temp</buttn>
+          </div>
           <p id="title">C3-Assistant</p>
-<textarea id="textarea">
+        </div>
+        <div id="content"> 
+          <textarea id="textarea">
 
 
     !!!  MAKE SURE YOU ARE ON THE RESIDENT'S PAGE !!!
@@ -21,17 +28,18 @@
                I                        I
                I                        I
                V                        V
-</textarea>
-          <div id="msg">
-            <buttn id="normalMSG">Normal MSG</buttn>
-            <buttn id="woMSG">WO MSG</buttn>
+            </textarea>
           </div>
-          <div>
-            <buttn id="copy">COPY</buttn>
-          </div>
+        </div>
+        <div id="msg">
+          <buttn id="normalMSG">Normal MSG</buttn>
+          <buttn id="woMSG">WO MSG</buttn>
+        </div>
+        <div>
+          <buttn id="copy">COPY</buttn>
+        </div>
         <p id="attribution">Template by CGhiran/RCC</p>
       </div>
-  </div>
     <script src="/popup.js"></script>
   </body>
 </html>

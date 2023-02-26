@@ -1,6 +1,7 @@
 document.getElementById("normalMSG").addEventListener('click', normalMSG);
 document.getElementById("woMSG").addEventListener('click', woMSG);
 document.getElementById("copy").addEventListener('click', copy);
+document.getElementById("getTemp").addEventListener('click', getTemp);
 let textarea = document.getElementById("textarea");
 
 // Get the signature
@@ -13,7 +14,7 @@ function onGot(item) {
 const getting = browser.storage.sync.get("signature");
 getting.then(onGot, onError);
 
-// Get the itmes from the DOM
+// Get the itemes from the DOM
 function modifyDOM() {
     let result = [];
 
@@ -64,7 +65,28 @@ function modifyDOM() {
         }
     }
     else result.push("noText");
-  
+
+    // Get the City and state
+    let cityAndState = firstSplit[6];
+    let cityAndStateSplit = cityAndState.split(',');
+    let city = cityAndStateSplit[0];
+    if (city != undefined){
+        result.push(city);
+    }
+    else {
+        result.push("noCity");
+    }
+    let cityAndStateSplitTrim = cityAndStateSplit[1].trim();
+    let cityAndStateSplitAgain = cityAndStateSplitTrim.split(' ');
+    let state = cityAndStateSplitAgain[0];
+    if (state != undefined){
+        result.push(state);
+    }
+    else {
+        result.push("noState");
+    }
+
+    // return the result Array
     return result;
 }
 
@@ -73,6 +95,7 @@ function normalMSG () {
     browser.tabs.executeScript({
         code: '(' + modifyDOM + ') ();' //argument here is a string but function.toString() returns function's code
     }, (results) => {
+        console.log(results);
         if (results !== undefined) {
             if (results[0][3] == "noWO"){
                 textarea.innerHTML = " ";
@@ -208,6 +231,7 @@ ${signature}`;
     });
 }
 
+ //Copy the generated template to clipboard
 function copy(){
   let copyText = document.getElementById("textarea");
   copyText.select();
@@ -215,3 +239,32 @@ function copy(){
   navigator.clipboard.writeText(trimText);
 }
 
+// Get the temperature
+function getTemp () {
+    browser.tabs.executeScript({
+        code: '(' + modifyDOM + ') ();' //argument here is a string but function.toString() returns function's code
+    }, (results) => {
+        console.log(results)
+        let adressInfo = document.getElementById("adressInfo");
+        let tempInfo = document.getElementById("displayTemp");
+        if (results == undefined || results[0] == undefined){
+            adressInfo.innerHTML = "Switch to the resident page...please :)";
+        }
+        else {
+            adressInfo.innerHTML = (results[0][5] + "," + results[0][6]);
+            getCurrentTemp().then(x => { 
+                tempInfo.innerHTML = x.main.temp + " F";
+            });
+        }
+
+    async function getCurrentTemp(){
+        const data = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${results[0][5]},${results[0][6]},us&appid=693ea66b786530ca2cf13a1535112c7d&units=imperial`);
+        const result = await data.json();
+        return result;
+    }
+});
+};
+
+
+
+    
